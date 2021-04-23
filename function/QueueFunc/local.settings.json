@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "",
+    "SENDGRID_API_KEY": "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"
+  }
+}
