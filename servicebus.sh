@@ -29,11 +29,11 @@ connectionString=$(az servicebus namespace authorization-rule keys list \
 
 echo $connectionString
 
-# Create a storage account
-az storage account create \
---name $storageAccount \
---resource-group $resourceGroup \
---location $location
+# # Create a storage account
+# az storage account create \
+# --name $storageAccount \
+# --resource-group $resourceGroup \
+# --location $location
 
 
 
