@@ -38,4 +38,4 @@ az functionapp create \
     --runtime python
 
 # Deploy the function 
-func azure functionapp publish $funcApp
+# func azure functionapp publish funcapp20210405
