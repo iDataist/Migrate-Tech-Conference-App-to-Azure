@@ -1,0 +1,20 @@
+hwdgr@DESKTOP-5JC5887 MINGW64 ~/Downloads/github_repo/Migrate-Tech-Conference-App-to-Azure/function (main)
+$ func start
+Found Python version 3.8.3 (py).
+
+Azure Functions Core Tools
+Core Tools Version:       3.0.3388 Commit hash: fb42a4e0b7fdc85fbd0bcfc8d743ff7d509122ae 
+Function Runtime Version: 3.0.15371.0
+
+Warning: 'connection' property in 'C:\Users\hwdgr\Downloads\github_repo\Migrate-Tech-Conference-App-to-Azure\function\QueueTrigger\function.json' is empty.   
+[2021-04-24T15:35:34.485Z] File 'C:\Program Files\dotnet\dotnet.exe' is not found, 'dotnet' invocation will rely on the PATH environment variable.
+[2021-04-24T15:35:37.011Z] File 'C:\Program Files\dotnet\dotnet.exe' is not found, 'dotnet' invocation will rely on the PATH environment variable.
+[2021-04-24T15:35:38.085Z] File 'C:\Program Files\dotnet\dotnet.exe' is not found, 'dotnet' invocation will rely on the PATH environment variable.
+
+Functions:
+
+        QueueTrigger: serviceBusTrigger
+
+For detailed output, run func with --verbose flag.
+[2021-04-24T15:35:43.401Z] Worker process started and initialized.
+[2021-04-24T15:35:44.878Z] Host lock lease acquired by instance ID '000000000000000000000000E4172C48'.
