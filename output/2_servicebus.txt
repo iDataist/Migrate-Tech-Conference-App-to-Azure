@@ -1,0 +1,55 @@
+hwdgr@DESKTOP-5JC5887 MINGW64 ~/Downloads/github_repo/Migrate-Tech-Conference-App-to-Azure/function (main)
+$ bash servicebus.sh 
+{
+  "createdAt": "2021-04-24T14:55:15.700000+00:00",
+  "id": "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/group20210405/providers/Microsoft.ServiceBus/namespaces/servicebus20210405",      
+  "location": "West US 2",
+  "metricId": "5bb35c36-233e-4b7e-afd9-a2b795899fb9:servicebus20210405",
+  "name": "servicebus20210405",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "group20210405",
+  "serviceBusEndpoint": "https://servicebus20210405.servicebus.windows.net:443/",
+  "sku": {
+    "capacity": null,
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "tags": {},
+  "type": "Microsoft.ServiceBus/Namespaces",
+  "updatedAt": "2021-04-24T14:55:59.403000+00:00"
+}
+{
+  "accessedAt": "0001-01-01T00:00:00",
+  "autoDeleteOnIdle": "10675199 days, 2:48:05.477581",
+  "countDetails": {
+    "activeMessageCount": 0,
+    "deadLetterMessageCount": 0,
+    "scheduledMessageCount": 0,
+    "transferDeadLetterMessageCount": 0,
+    "transferMessageCount": 0
+  },
+  "createdAt": "2021-04-24T14:56:34.447000+00:00",
+  "deadLetteringOnMessageExpiration": false,
+  "defaultMessageTimeToLive": "14 days, 0:00:00",
+  "duplicateDetectionHistoryTimeWindow": "0:10:00",
+  "enableBatchedOperations": true,
+  "enableExpress": false,
+  "enablePartitioning": true,
+  "forwardDeadLetteredMessagesTo": null,
+  "forwardTo": null,
+  "id": "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/group20210405/providers/Microsoft.ServiceBus/namespaces/servicebus20210405/queues/notificationqueue",
+  "location": "West US 2",
+  "lockDuration": "0:01:00",
+  "maxDeliveryCount": 10,
+  "maxSizeInMegabytes": 16384,
+  "messageCount": 0,
+  "name": "notificationqueue",
+  "requiresDuplicateDetection": false,
+  "requiresSession": false,
+  "resourceGroup": "group20210405",
+  "sizeInBytes": 0,
+  "status": "Active",
+  "type": "Microsoft.ServiceBus/Namespaces/Queues",
+  "updatedAt": "2021-04-24T14:56:34.680000+00:00"
+}
+Endpoint=sb://servicebus20210405.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SUgPkPrcIpkH+6KebzO1a9kw9dxZ6fWlSHqY6dmMU3o=
