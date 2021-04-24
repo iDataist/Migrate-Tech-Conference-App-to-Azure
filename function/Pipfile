@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 azure-functions = "*"
+sendgrid = "==6.3.0"
+azure-servicebus = "==0.50.2"
+psycopg2-binary = "==2.8.6"
 
 [dev-packages]
 
