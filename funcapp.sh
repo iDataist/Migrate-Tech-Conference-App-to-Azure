@@ -10,9 +10,9 @@ funcApp="funcapp$uniqueId"
 # pipenv install
 
 # # initiate a local project folder
-# func init httpFunc --python
+# func init function --python
 
-# cd httpFunc
+# cd function
 
 # # initiate a function
 # func new --name QueueTrigger --template "Azure Service Bus Queue trigger" --language python
