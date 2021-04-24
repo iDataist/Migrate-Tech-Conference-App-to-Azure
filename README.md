@@ -3,15 +3,15 @@
 ## Project Overview
 The TechConf website allows attendees to register for an upcoming conference. Administrators can also view the list of attendees and notify all attendees via a personalized email message.
 
-The application is currently working but the following pain points have triggered the need for migration to Azure:
+The application works but the following pain points have triggered the need for migration to Azure:
  - The web application is not scalable to handle user load at peak
  - When the admin sends out notifications, it's currently taking a long time because it's looping through all attendees, resulting in some HTTP timeout exceptions
  - The current architecture is not cost-effective 
 
-In this project, you are tasked to do the following:
-- Migrate and deploy the pre-existing web app to an Azure App Service
-- Migrate a PostgreSQL database backup to an Azure Postgres database instance
-- Refactor the notification logic to an Azure Function via a service bus queue message
+I migrated the application to Azure in the following steps: 
+- Migrated and deployed the web app to an Azure App Service
+- Migrated a PostgreSQL database backup to an Azure Postgres database instance
+- Refactored the notification logic to an Azure Function via a service bus queue message
 
 ## Dependencies
 
@@ -22,50 +22,113 @@ You will need to install the following locally:
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 - [Azure Tools for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack)
 
-## Project Instructions
+## Steps to deploy the webapp in Azure
 
-### Part 1: Create Azure Resources and Deploy Web App
-1. Create a Resource group
-2. Create an Azure Postgres Database single server
-   - Add a new database `techconfdb`
-   - Allow all IPs to connect to database server
-   - Restore the database with the backup located in the data folder
-3. Create a Service Bus resource with a `notificationqueue` that will be used to communicate between the web and the function
-   - Open the web folder and update the following in the `config.py` file
+1. Create the PostgreSql server in Azure by running the command below. The output should look like [1_postgresql.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/1_postgresql.txt). 
+    ```
+    bash postgresql.sh
+    ```
+2. Open pgAdmin, connect to the Azure server, restore the database from [techconfdb_backup.tar](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/techconfdb_backup.tar), and modify the dataytpe for the id columns in the attendee and notification tables using the [modify_id_datatype.sql](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/modify_id_datatype.sql) script. 
+    ![](output/add_azure_server_1.png)
+    ![](output/add_azure_server_2.png)
+    ![](output/restore.png)
+    ![](output/modify_id.png)
+3. Create the service bus resources in Azure by running the command below. The output should look like [2_servicebus.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/2_servicebus.txt). 
+    ```
+    bash servicebus.sh
+    ```
+4. Create the function app resources in Azure by running the command below. The output should look like [3_funcapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/3_funcapp.txt). 
+    ```
+    bash funcapp.sh
+    ```
+5. Initiate the Azure Functions and update the [__init__.py](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/function/QueueTrigger/__init__.py) file to customize the function. Refactor the post logic in `web/app/routes.py -> notification()` using servicebus `queue_client`.  
+
+   ```bash
+   # initiate local python environment
+   pipenv shell
+   pipenv install
+
+   # initiate a local project folder
+   func init function --python
+
+   cd function
+
+   # initiate a function
+   func new --name QueueTrigger --template "Azure Service Bus Queue trigger" --language python
+   ``` 
+6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. 
+    ![](output/funcapp_config.png)
+    Update the following in the `config.py` file: 
       - `POSTGRES_URL`
       - `POSTGRES_USER`
       - `POSTGRES_PW`
       - `POSTGRES_DB`
       - `SERVICE_BUS_CONNECTION_STRING`
-4. Create App Service plan
-5. Create a storage account
-6. Deploy the web app
+7. Test the function app and webapp locally.
+   ```bash
+   cd function
 
-### Part 2: Create and Publish Azure Function
-1. Create an Azure Function in the `function` folder that is triggered by the service bus queue created in Part 1.
+   # initiate local python environment
+   pipenv shell
+   pipenv install
 
-      **Note**: Skeleton code has been provided in the **README** file located in the `function` folder. You will need to copy/paste this code into the `__init.py__` file in the `function` folder.
-      - The Azure Function should do the following:
-         - Process the message which is the `notification_id`
-         - Query the database using `psycopg2` library for the given notification to retrieve the subject and message
-         - Query the database to retrieve a list of attendees (**email** and **first name**)
-         - Loop through each attendee and send a personalized subject message
-         - After the notification, update the notification status with the total number of attendees notified
-2. Publish the Azure Function
+   # test func locally
+   func start
+   ``` 
+    ```bash
+    # cd into NeighborlyFrontEnd
+    cd web
 
-### Part 3: Refactor `routes.py`
-1. Refactor the post logic in `web/app/routes.py -> notification()` using servicebus `queue_client`:
-   - The notification method on POST should save the notification object and queue the notification id for the function to pick it up
-2. Re-deploy the web app to publish changes
+    # install dependencies
+    pipenv install
+
+    # go into the shell
+    pipenv shell
+
+    # test the webapp locally
+    python application.py   
+    ```
+8. Deploy the function app and the webapp with Azure.
+    ```bash
+    # cd into NeighborlyAPI
+    cd function
+
+    # install dependencies
+    pipenv install
+
+    # go into the shell
+    pipenv shell
+
+    # deploy Azure Functions
+    func azure functionapp publish funcapp20210405
+    ```
+    ```bash
+    # cd into NeighborlyFrontEnd
+    cd web
+
+    # install dependencies
+    pipenv install
+
+    # go into the shell
+    pipenv shell
+
+    # deploy the webapp 
+    az webapp up \
+        --resource-group group20210405 \
+        --name techconf2022 \
+        --sku F1 
+    ```
 
 ## Monthly Cost Analysis
-Complete a month cost analysis of each Azure resource to give an estimate total cost using the table below:
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
-
+| *Azure Postgres Database* | General Purpose | $127.90       |
+| *Azure Service Bus*   |   Basic      |     $0.05         |
+| *Azure App Service*   |   Basic      |       $54.75       |
+| *Azure Function App*   |   Consumption   |    $0.00         |
+| *Azure Storage*   |   Standard      |       $20.80       |
 ## Architecture Explanation
-This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+ - The web application is scalable to handle user load at peak.
+ - The function app is scalable. When the admin sends out notifications, there will not be HTTP timeout exceptions. 
+ - The architecture is cost-effective. All the services are reasonably priced.
