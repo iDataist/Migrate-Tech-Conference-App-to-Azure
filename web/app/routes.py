@@ -62,10 +62,11 @@ def notification():
         notification.subject = request.form['subject']
         notification.status = 'Notifications submitted'
         notification.submitted_date = datetime.utcnow()
-        # notification_id = notification.id
+        
         try:
             db.session.add(notification)
             db.session.commit()
+            # notification_id = notification.id
             # msg = Message(str(notification_id))
             # # Call servicebus queue_client to enqueue notification ID
             # queue_client.send(msg)    
