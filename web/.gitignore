@@ -141,3 +141,5 @@ cython_debug/
 
 # macOS
 .DS_Store
+
+config.py
