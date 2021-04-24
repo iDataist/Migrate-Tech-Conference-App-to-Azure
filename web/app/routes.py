@@ -32,7 +32,8 @@ def registration():
             db.session.commit()
             session['message'] = 'Thank you, {} {}, for registering!'.format(attendee.first_name, attendee.last_name)
             return redirect('/Registration')
-        except:
+        except Exception as e:
+            logging.error(e)
             logging.error('Error occured while saving your information')
 
     else:
@@ -66,25 +67,25 @@ def notification():
         try:
             db.session.add(notification)
             db.session.commit()
-            # notification_id = notification.id
-            # msg = Message(str(notification_id))
-            # # Call servicebus queue_client to enqueue notification ID
-            # queue_client.send(msg)    
+            notification_id = notification.id
+            msg = Message(str(notification_id))
+            # Call servicebus queue_client to enqueue notification ID
+            queue_client.send(msg)    
 
-            attendees = Attendee.query.all()
+            # attendees = Attendee.query.all()
 
-            for attendee in attendees:
-                subject = '{}: {}'.format(attendee.first_name, notification.subject)
-                send_email(attendee.email, subject, notification.message)
+            # for attendee in attendees:
+            #     subject = '{}: {}'.format(attendee.first_name, notification.subject)
+            #     send_email(attendee.email, subject, notification.message)
 
-            notification.completed_date = datetime.utcnow()
-            notification.status = 'Notified {} attendees'.format(len(attendees))
-            db.session.commit()
+            # notification.completed_date = datetime.utcnow()
+            # notification.status = 'Notified {} attendees'.format(len(attendees))
+            # db.session.commit()
 
             return redirect('/Notifications')
-        except :
+        except Exception as e:
+            logging.error(e)
             logging.error('log unable to save notification')
-
     else:
         return render_template('notification.html')
 
