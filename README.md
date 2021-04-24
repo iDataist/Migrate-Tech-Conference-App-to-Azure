@@ -4,14 +4,16 @@
 The TechConf website allows attendees to register for an upcoming conference. Administrators can also view the list of attendees and notify all attendees via a personalized email message.
 
 The application works but the following pain points have triggered the need for migration to Azure:
- - The web application is not scalable to handle user load at peak
- - When the admin sends out notifications, it's currently taking a long time because it's looping through all attendees, resulting in some HTTP timeout exceptions
- - The current architecture is not cost-effective 
+ - The web application is not scalable to handle user load at peak.
+ - When the admin sends out notifications, it's currently taking a long time because it's looping through all attendees, resulting in some HTTP timeout exceptions.
+ - The current architecture is not cost-effective.
 
 I migrated the application to Azure in the following steps: 
-- Migrated and deployed the web app to an Azure App Service
 - Migrated a PostgreSQL database backup to an Azure Postgres database instance
 - Refactored the notification logic to an Azure Function via a service bus queue message
+- Migrated and deployed the web app to an Azure App Service
+
+
 
 ## Dependencies
 
@@ -28,20 +30,12 @@ You will need to install the following locally:
     ```
     bash postgresql.sh
     ```
-2. Open pgAdmin, connect to the Azure server, restore the database from [techconfdb_backup.tar](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/techconfdb_backup.tar), and modify the dataytpe for the id columns in the attendee and notification tables using the [modify_id_datatype.sql](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/modify_id_datatype.sql) script. 
+2. Open pgAdmin, connect to the Azure PostgreSql server, restore the database from [techconfdb_backup.tar](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/techconfdb_backup.tar), and modify the dataytpe for the id column in the attendee and notification tables using the [modify_id_datatype.sql](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/data/modify_id_datatype.sql) script. 
     ![](output/add_azure_server_1.png)
     ![](output/add_azure_server_2.png)
     ![](output/restore.png)
     ![](output/modify_id.png)
-3. Create the service bus resources in Azure by running the command below. The output should look like [2_servicebus.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/2_servicebus.txt). 
-    ```
-    bash servicebus.sh
-    ```
-4. Create the function app resources in Azure by running the command below. The output should look like [3_funcapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/3_funcapp.txt). 
-    ```
-    bash funcapp.sh
-    ```
-5. Initiate the Azure Functions and update the [__init__.py](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/function/QueueTrigger/__init__.py) file to customize the function. Refactor the post logic in `web/app/routes.py -> notification()` using servicebus `queue_client`.  
+3. Initiate the Azure Functions and update the [__init__.py](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/function/QueueTrigger/__init__.py) file to customize the function. Refactor the post logic in `web/app/routes.py -> notification()` using servicebus `queue_client`.  
 
    ```bash
    # initiate local python environment
@@ -56,6 +50,15 @@ You will need to install the following locally:
    # initiate a function
    func new --name QueueTrigger --template "Azure Service Bus Queue trigger" --language python
    ``` 
+4. Create the function app resources in Azure by running the command below. The output should look like [3_funcapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/3_funcapp.txt). 
+    ```
+    bash funcapp.sh
+    ```
+5. Create the service bus resources in Azure by running the command below. The output should look like [2_servicebus.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/2_servicebus.txt). 
+    ```
+    bash servicebus.sh
+    ```
+
 6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. 
     ![](output/funcapp_config.png)
     Update the following in the `config.py` file: 
@@ -119,7 +122,7 @@ You will need to install the following locally:
         --sku F1 
     ```
 
-## Monthly Cost Analysis
+## [Monthly Cost Analysis](https://azure.microsoft.com/en-us/pricing/calculator/)
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
