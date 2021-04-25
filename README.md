@@ -59,7 +59,7 @@ You will need to install the following locally:
     bash servicebus.sh
     ```
 
-6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. 
+6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. Update "queueName" and "connection" in function.json. 
     ![](output/funcapp_config.png)
     Update the following in the `config.py` file: 
       - `POSTGRES_URL`
