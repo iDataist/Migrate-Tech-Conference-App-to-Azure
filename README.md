@@ -104,7 +104,6 @@ You will need to install the following locally:
     func azure functionapp publish funcapp20210405
     ```
     ```bash
-    # cd into NeighborlyFrontEnd
     cd web
 
     # install dependencies
@@ -114,10 +113,7 @@ You will need to install the following locally:
     pipenv shell
 
     # deploy the webapp 
-    az webapp up \
-        --resource-group group20210405 \
-        --name techconf2022 \
-        --sku F1 
+    az webapp up --resource-group group20210405 --name techconf2022 --sku F1 
     ```
 
 ## [Monthly Cost Analysis](https://azure.microsoft.com/en-us/pricing/calculator/)
