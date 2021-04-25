@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 
 def main(msg: func.ServiceBusMessage):
 
-    notification_id = int(msg.get_body().decode('utf-8'))
+    notification_id = int(float(msg.get_body().decode('utf-8')))
     logging.info('Python ServiceBus queue trigger processed message: %s',notification_id)
 
     # Get connection to database
@@ -28,7 +28,6 @@ def main(msg: func.ServiceBusMessage):
         attendees = cur.fetchall()
 
         # Loop through each attendee and send an email with a personalized subject
-        num_attendee_notified = 0
         for (email, first_name) in attendees:
             mail = Mail(
                 from_email='hui.ren@idataist.com',
@@ -36,13 +35,12 @@ def main(msg: func.ServiceBusMessage):
                 subject= subject,
                 plain_text_content= "Hi {}, \n {}".format(first_name, body))
             try:
+                SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
                 sg = SendGridAPIClient(SENDGRID_API_KEY)
                 response = sg.send(mail)
-                if response.status_code == 202:
-                    num_attendee_notified += 1
             except Exception as e:
-                logging.error(e.message)
-        status = "Notified {} attendees".format(num_attendee_notified)
+                logging.error(e)
+        status = "Notified {} attendees".format(len(attendees))
         # Update the notification table by setting the completed date and updating the status with the total number of attendees notified
         # cur.execute("UPDATE notification SET status = '{}', completed_date = '{}' WHERE id = {};".format(status, datetime.utcnow(), notification_id))
         cur.execute("INSERT INTO notification(status, message, completed_date, subject) VALUES ('{}', '{}', '{}','{}');".format(status, body, datetime.utcnow(), subject))
