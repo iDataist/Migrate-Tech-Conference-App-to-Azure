@@ -50,11 +50,11 @@ You will need to install the following locally:
    # initiate a function
    func new --name QueueTrigger --template "Azure Service Bus Queue trigger" --language python
    ``` 
-4. Create the function app resources in Azure by running the command below. The output should look like [3_funcapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/3_funcapp.txt). 
+4. Create the function app resources in Azure by running the command below. The output should look like [2_funcapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/2_funcapp.txt). 
     ```
     bash funcapp.sh
     ```
-5. Create the service bus resources in Azure by running the command below. The output should look like [2_servicebus.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/2_servicebus.txt). 
+5. Create the service bus resources in Azure by running the command below. The output should look like [3_servicebus.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/3_servicebus.txt). 
     ```
     bash servicebus.sh
     ```
@@ -79,7 +79,6 @@ You will need to install the following locally:
    func start
    ``` 
     ```bash
-    # cd into NeighborlyFrontEnd
     cd web
 
     # install dependencies
@@ -93,7 +92,6 @@ You will need to install the following locally:
     ```
 8. Deploy the function app and the webapp with Azure.
     ```bash
-    # cd into NeighborlyAPI
     cd function
 
     # install dependencies
@@ -128,7 +126,7 @@ You will need to install the following locally:
 | ------------ | ------------ | ------------ |
 | *Azure Postgres Database* | General Purpose | $127.90       |
 | *Azure Service Bus*   |   Basic      |     $0.05         |
-| *Azure App Service*   |   Basic      |       $54.75       |
+| *Azure App Service*   |   F1:Free      |       $0.00       |
 | *Azure Function App*   |   Consumption   |    $0.00         |
 | *Azure Storage*   |   Standard      |       $20.80       |
 ## Architecture Explanation

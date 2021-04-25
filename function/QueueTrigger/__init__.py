@@ -36,15 +36,17 @@ def main(msg: func.ServiceBusMessage):
                 subject= subject,
                 plain_text_content= "Hi {}, \n {}".format(first_name, body))
             try:
-                sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+                sg = SendGridAPIClient(SENDGRID_API_KEY)
                 response = sg.send(mail)
-                if response.status_code == "202":
+                if response.status_code == 202:
                     num_attendee_notified += 1
             except Exception as e:
-                print(e.message)
+                logging.error(e.message)
         status = "Notified {} attendees".format(num_attendee_notified)
         # Update the notification table by setting the completed date and updating the status with the total number of attendees notified
-        cur.execute("UPDATE notification SET status = '{}', completed_date = '{}' WHERE id = {};".format(status, datetime.utcnow(), notification_id))
+    #     cur.execute("UPDATE notification SET status = '{}', completed_date = '{}' WHERE id = {};".format(status, datetime.utcnow(), notification_id))
+        loggin.info(status, message, completed_date, subject)
+        cur.execute("INSERT INTO notification(status, message, completed_date, subject) VALUES ('{}', '{}', '{}','{}');".format(status, body, datetime.utcnow(), subject))
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         logging.error(error)
