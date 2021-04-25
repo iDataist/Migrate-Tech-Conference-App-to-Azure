@@ -115,6 +115,7 @@ You will need to install the following locally:
     # deploy the webapp 
     az webapp up --resource-group group20210405 --name techconf2022 --sku F1 
     ```
+9. Test the webapp by using the registration and send notification functions. 
 
 ## [Monthly Cost Analysis](https://azure.microsoft.com/en-us/pricing/calculator/)
 
