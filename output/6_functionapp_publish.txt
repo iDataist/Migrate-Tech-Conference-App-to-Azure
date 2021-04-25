@@ -1,0 +1,147 @@
+hwdgr@DESKTOP-5JC5887 MINGW64 ~/Downloads/github_repo/Migrate-Tech-Conference-App-to-Azure/function (main)
+$ func azure functionapp publish funcapp20210405
+Getting site publishing info...
+Creating archive for current directory...
+Performing remote build for functions project.
+Uploading 10.17 KB [##############################################################################]
+Remote build in progress, please wait...
+Updating submodules.
+Preparing deployment for commit id '97cd57cd03'.
+Repository path is /tmp/zipdeploy/extracted
+Running oryx build...
+Command: oryx build /tmp/zipdeploy/extracted -o /home/site/wwwroot --platform python --platform-version 3.7 -p packagedir=.python_packages/lib/site-packages
+Operation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx
+You can report issues at https://github.com/Microsoft/Oryx/issues
+
+Oryx Version: 0.2.20201015.1, Commit: 1a35fbce482b20b71290f3a837a3469803ce4b44, ReleaseTagName: 20201015.1
+
+Build Operation ID: |hYSeI1fdhhE=.1281e90_
+Repository Commit : 97cd57cd0373401f9f444e84bae47b09
+
+Detecting platforms...
+Detected following platforms:
+  python: 3.7.9
+Version '3.7.9' of platform 'python' is not installed. Generating script to install it...
+Warning: An outdated version of python was detected (3.7.9). Consider updating.\nVersions supported by Oryx: https://github.com/microsoft/Oryx
+
+
+
+Source directory     : /tmp/zipdeploy/extracted
+Destination directory: /home/site/wwwroot
+
+
+Downloading and extracting 'python' version '3.7.9' to '/tmp/oryx/platforms/python/3.7.9'...
+Downloaded in 3 sec(s).
+Verifying checksum...
+Extracting contents...
+Done in 7 sec(s).
+
+Python Version: /tmp/oryx/platforms/python/3.7.9/bin/python3.7
+
+Running pip install...
+[15:55:40+0000] Collecting azure-functions
+[15:55:40+0000]   Downloading azure_functions-1.7.0-py3-none-any.whl (135 kB)
+[15:55:40+0000] Collecting sendgrid==6.3.0
+[15:55:40+0000]   Downloading sendgrid-6.3.0-py3-none-any.whl (71 kB)
+[15:55:41+0000] Collecting azure-servicebus==0.50.2
+[15:55:41+0000]   Downloading azure_servicebus-0.50.2-py2.py3-none-any.whl (88 kB)
+[15:55:41+0000] Collecting psycopg2-binary==2.8.6
+[15:55:41+0000]   Downloading psycopg2_binary-2.8.6-cp37-cp37m-manylinux1_x86_64.whl (3.0 MB)
+[15:55:42+0000] Collecting python-http-client>=3.2.1
+[15:55:42+0000]   Downloading python_http_client-3.2.1-py3-none-any.whl (12 kB)
+[15:55:42+0000] Collecting msrestazure<2.0.0,>=0.4.32
+[15:55:42+0000]   Downloading msrestazure-0.6.4-py2.py3-none-any.whl (40 kB)
+[15:55:42+0000] Collecting azure-common~=1.1
+[15:55:42+0000]   Downloading azure_common-1.1.27-py2.py3-none-any.whl (12 kB)
+[15:55:43+0000] Collecting uamqp<2.0.0,>=1.2.5
+[15:55:43+0000]   Downloading uamqp-1.3.0-cp37-cp37m-manylinux2010_x86_64.whl (3.1 MB)
+[15:55:45+0000] Collecting six
+[15:55:45+0000]   Downloading six-1.15.0-py2.py3-none-any.whl (10 kB)
+[15:55:46+0000] Collecting adal<2.0.0,>=0.6.0
+[15:55:46+0000]   Downloading adal-1.2.7-py2.py3-none-any.whl (55 kB)
+[15:55:46+0000] Collecting msrest<2.0.0,>=0.6.0
+[15:55:46+0000]   Downloading msrest-0.6.21-py2.py3-none-any.whl (85 kB)
+[15:55:46+0000] Collecting certifi>=2017.4.17
+[15:55:46+0000]   Downloading certifi-2020.12.5-py2.py3-none-any.whl (147 kB)
+[15:55:47+0000] Collecting cryptography>=1.1.0
+[15:55:47+0000]   Downloading cryptography-3.4.7-cp36-abi3-manylinux2014_x86_64.whl (3.2 MB)
+[15:55:48+0000] Collecting python-dateutil<3,>=2.1.0
+[15:55:48+0000]   Downloading python_dateutil-2.8.1-py2.py3-none-any.whl (227 kB)
+[15:55:49+0000] Collecting PyJWT<3,>=1.0.0
+[15:55:49+0000]   Downloading PyJWT-2.0.1-py3-none-any.whl (15 kB)
+[15:55:49+0000] Collecting requests<3,>=2.0.0
+[15:55:49+0000]   Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+[15:55:49+0000] Collecting isodate>=0.6.0
+[15:55:49+0000]   Downloading isodate-0.6.0-py2.py3-none-any.whl (45 kB)
+[15:55:49+0000] Collecting requests-oauthlib>=0.5.0
+[15:55:49+0000]   Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+[15:55:50+0000] Collecting cffi>=1.12
+[15:55:50+0000]   Downloading cffi-1.14.5-cp37-cp37m-manylinux1_x86_64.whl (402 kB)
+[15:55:50+0000] Collecting chardet<5,>=3.0.2
+[15:55:50+0000]   Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+[15:55:51+0000] Collecting urllib3<1.27,>=1.21.1
+[15:55:51+0000]   Downloading urllib3-1.26.4-py2.py3-none-any.whl (153 kB)
+[15:55:51+0000] Collecting idna<3,>=2.5
+[15:55:51+0000]   Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+[15:55:51+0000] Collecting oauthlib>=3.0.0
+[15:55:51+0000]   Downloading oauthlib-3.1.0-py2.py3-none-any.whl (147 kB)
+[15:55:51+0000] Collecting pycparser
+[15:55:51+0000]   Downloading pycparser-2.20-py2.py3-none-any.whl (112 kB)
+[15:55:52+0000] Installing collected packages: azure-functions, python-http-client, sendgrid, six, pycparser, cffi, cryptography, python-dateutil, PyJWT, chardet, certifi, urllib3, idna, requests, adal, isodate, oauthlib, requests-oauthlib, msrest, msrestazure, azure-common, uamqp, azure-servicebus, psycopg2-binary
+[15:55:56+0000] Successfully installed PyJWT-2.0.1 adal-1.2.7 azure-common-1.1.27 azure-functions-1.7.0 azure-servicebus-0.50.2 certifi-2020.12.5 cffi-1.14.5 
+chardet-4.0.0 cryptography-3.4.7 idna-2.10 isodate-0.6.0 msrest-0.6.21 msrestazure-0.6.4 oauthlib-3.1.0 psycopg2-binary-2.8.6 pycparser-2.20 python-dateutil-2.8.1 python-http-client-3.2.1 requests-2.25.1 requests-oauthlib-1.3.0 sendgrid-6.3.0 six-1.15.0 uamqp-1.3.0 urllib3-1.26.4
+WARNING: You are using pip version 20.2; however, version 21.1 is available.
+You should consider upgrading via the '/tmp/oryx/platforms/python/3.7.9/bin/python3.7 -m pip install --upgrade pip' command.
+Done in 19 sec(s).
+
+Copying files to destination directory '/home/site/wwwroot'...
+Done in 1 sec(s).
+
+Removing existing manifest file
+Creating a manifest file...
+Manifest file created.
+
+Done in 27 sec(s).
+Running post deployment command(s)...
+Triggering recycle (preview mode disabled).
+Linux Consumption plan has a 1.5 GB memory limit on a remote build container.
+To check our service limit, please visit https://docs.microsoft.com/en-us/azure/azure-functions/functions-scale#service-limits
+Creating placeholder blob for linux consumption function app...
+SCM_RUN_FROM_PACKAGE placeholder blob scm-latest-funcapp20210405.zip located
+Writing the artifacts to a squashfs file
+Parallel mksquashfs: Using 2 processors
+Creating 4.0 filesystem on /home/site/artifacts/functionappartifact.squashfs, block size 131072.
+
+[=============================================================/] 1653/1653 100%
+
+Exportable Squashfs 4.0 filesystem, gzip compressed, data block size 131072
+        compressed data, compressed metadata, compressed fragments, compressed xattrs
+        duplicates are removed
+Filesystem size 12353.43 Kbytes (12.06 Mbytes)
+        29.35% of uncompressed filesystem size (42085.60 Kbytes)
+Inode table size 16018 bytes (15.64 Kbytes)
+        29.93% of uncompressed inode table size (53510 bytes)
+Directory table size 15789 bytes (15.42 Kbytes)
+        36.77% of uncompressed directory table size (42939 bytes)
+Number of duplicate files found 55
+Number of inodes 1640
+Number of files 1439
+Number of fragments 97
+Number of symbolic links  0
+Number of device nodes 0
+Number of fifo nodes 0
+Number of socket nodes 0
+Number of directories 201
+Number of ids (unique uids + gids) 1
+Number of uids 1
+        root (0)
+Number of gids 1
+        root (0)
+Uploading built content /home/site/artifacts/functionappartifact.squashfs for linux consumption function app...
+Resetting all workers for funcapp20210405.azurewebsites.net
+Deployment successful.
+Remote build succeeded!
+Syncing triggers...
+Functions in funcapp20210405:
+    QueueTrigger - [serviceBusTrigger]
+
