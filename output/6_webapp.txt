@@ -1,0 +1,22 @@
+(web-J5v7WMe-) C:\Users\hwdgr\Downloads\github_repo\Migrate-Tech-Conference-App-to-Azure\web>az webapp up --resource-group group20210405 --name techconf2022 --sku F1
+The webapp 'techconf2022' doesn't exist
+Creating AppServicePlan 'appservice20210405' ...
+Creating webapp 'techconf2022' ...
+Configuring default logging for the app, if not already enabled
+Creating zip with contents of dir C:\Users\hwdgr\Downloads\github_repo\Migrate-Tech-Conference-App-to-Azure\web ...
+Getting scm site credentials for zip deployment
+Starting zip deployment. This operation can take a while to complete ...
+Deployment endpoint responded with status code 202
+You can launch the app at http://techconf2022.azurewebsites.net
+{
+  "URL": "http://techconf2022.azurewebsites.net",
+  "appserviceplan": "appservice20210405",
+  "location": "westus2",
+  "name": "techconf2022",
+  "os": "Linux",
+  "resourcegroup": "group20210405",
+  "runtime_version": "python|3.7",
+  "runtime_version_detected": "-",
+  "sku": "FREE",
+  "src_path": "C:\\Users\\hwdgr\\Downloads\\github_repo\\Migrate-Tech-Conference-App-to-Azure\\web"
+}
