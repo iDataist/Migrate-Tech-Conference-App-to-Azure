@@ -9,11 +9,9 @@ The application works but the following pain points have triggered the need for 
  - The current architecture is not cost-effective.
 
 I migrated the application to Azure in the following steps: 
-- Migrated a PostgreSQL database backup to an Azure Postgres database instance
-- Refactored the notification logic to an Azure Function via a service bus queue message
-- Migrated and deployed the web app to an Azure App Service
-
-
+- Migrate a PostgreSQL database to an Azure Postgres database instance
+- Refactor the notification logic to an Azure Function via a service bus queue message
+- Migrate and deploy the web app to an Azure App Service
 
 ## Dependencies
 
@@ -59,15 +57,17 @@ You will need to install the following locally:
     bash servicebus.sh
     ```
 
-6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. Update "queueName" and "connection" in function.json. 
+6. Update "AzureWebJobsStorage", "AzureWebJobsServiceBus" and "SENDGRID_API_KEY" in local.settings.json and the function app configuration from the Azure portal. 
     ![](output/funcapp_config.png)
+    Update "queueName" and "connection" in function.json. 
+
     Update the following in the `config.py` file: 
       - `POSTGRES_URL`
       - `POSTGRES_USER`
       - `POSTGRES_PW`
       - `POSTGRES_DB`
       - `SERVICE_BUS_CONNECTION_STRING`
-7. Test the function app and webapp locally.
+7. Test the function app and webapp locally. The output should look like [4_func_start.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/4_func_start.txt) and [](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/5_localhost.txt)
    ```bash
    cd function
 
@@ -90,7 +90,7 @@ You will need to install the following locally:
     # test the webapp locally
     python application.py   
     ```
-8. Deploy the function app and the webapp with Azure.
+8. Deploy the function app and the webapp with Azure. The output should look like [6_functionapp_publish.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/6_functionapp_publish.txt) and [7_webapp.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/7_webapp.txt). 
     ```bash
     cd function
 
