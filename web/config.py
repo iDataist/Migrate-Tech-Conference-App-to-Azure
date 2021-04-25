@@ -12,7 +12,7 @@ class BaseConfig:
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI') or DB_URL
     CONFERENCE_ID = 1
     SECRET_KEY = 'LWd2tzlprdGHCIPHTd4tp5SBFgDszm'
-    SERVICE_BUS_CONNECTION_STRING ='Endpoint=sb://servicebus20210405.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SUgPkPrcIpkH+6KebzO1a9kw9dxZ6fWlSHqY6dmMU3o=' 
+    SERVICE_BUS_CONNECTION_STRING ='Endpoint=sb://servicebus20210405.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BVZUTvF0Ub64l69uDQe+JeVWciLBC4+MqdeVK2B9YVg=' 
     SERVICE_BUS_QUEUE_NAME ='notificationqueue'
     # ADMIN_EMAIL_ADDRESS: 'hui.ren@idataist.com'
     # SENDGRID_API_KEY = '' 
