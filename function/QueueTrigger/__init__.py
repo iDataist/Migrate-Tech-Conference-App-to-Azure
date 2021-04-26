@@ -42,8 +42,8 @@ def main(msg: func.ServiceBusMessage):
                 logging.error(e)
         status = "Notified {} attendees".format(len(attendees))
         # Update the notification table by setting the completed date and updating the status with the total number of attendees notified
-        # cur.execute("UPDATE notification SET status = '{}', completed_date = '{}' WHERE id = {};".format(status, datetime.utcnow(), notification_id))
-        cur.execute("INSERT INTO notification(status, message, completed_date, subject) VALUES ('{}', '{}', '{}','{}');".format(status, body, datetime.utcnow(), subject))
+        cur.execute("UPDATE notification SET status = '{}', completed_date = '{}' WHERE id = {};".format(status, datetime.utcnow(), notification_id))
+        # cur.execute("INSERT INTO notification(status, message, completed_date, subject) VALUES ('{}', '{}', '{}','{}');".format(status, body, datetime.utcnow(), subject))
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         logging.error(error)
