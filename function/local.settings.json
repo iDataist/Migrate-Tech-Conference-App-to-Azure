@@ -2,8 +2,8 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=blob20210405;AccountKey=x4rYNJeEcJxoJyZnCwEAiV2FQ/UExWMmtZPTPvh0qveBFnknEqIgevRj34yJtbw9nO1Z7/m4evEHhn5OHIGFUw==",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=blob20210405;AccountKey=u20V81n5dT76AuoGOX3Vh+j27IK92l6lu7zQ782q5WfJM5zGLzyGXlhZwSlBJDOgey4gKapUMB8VNh3XTi/zgg==",
     "SENDGRID_API_KEY": "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", 
-    "AzureWebJobsServiceBus" : "Endpoint=sb://servicebus20210405.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BVZUTvF0Ub64l69uDQe+JeVWciLBC4+MqdeVK2B9YVg="
+    "AzureWebJobsServiceBus" : "Endpoint=sb://servicebus20210405.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Jczh/N2LvYlsSsmZv4OuzDcIyd89fuaNdvbSL3GAQ7A="
   }
 }
