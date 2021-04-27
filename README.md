@@ -22,7 +22,7 @@ You will need to install the following locally:
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 - [Azure Tools for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack)
 
-## Migrate the webapp to Azure
+## Migrate the Web App to Azure
 
 1. Create the PostgreSql server in Azure by running the command below. The output should look like [1_postgresql.txt](https://github.com/iDataist/Migrate-Tech-Conference-App-to-Azure/blob/main/output/1_postgresql.txt). 
     ```
